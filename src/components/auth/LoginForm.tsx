@@ -1,7 +1,14 @@
-import React from 'react'
+import React from "react";
+import CardWrapper from "./CardWrapper";
 
 export const LoginForm = () => {
   return (
-    <div>LoginForm</div>
-  )
-}
+    <CardWrapper
+      headerLabel="Welcome back"
+      backButtonHerf="/register"
+      backButtonLabel="Don't have a account?"
+    >
+      login
+    </CardWrapper>
+  );
+};
