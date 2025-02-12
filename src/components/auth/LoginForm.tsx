@@ -17,9 +17,11 @@ import { Button } from "../ui/button";
 import FormError from "../FormError";
 import FormSuccess from "../FormSuccess";
 import { login } from "@/app/actions/login";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 
 export const LoginForm = () => {
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof LoginSchemas>>({
     resolver: zodResolver(LoginSchemas),
@@ -30,8 +32,17 @@ export const LoginForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchemas>) => {
-    startTransition(() => {
-      login(values);
+    startTransition(async () => {
+      setError("");
+      setSuccess("");
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const response = await login(values);
+      if (response?.error) {
+        setError(response.error);
+      }
+      if (response?.success) {
+        setSuccess(response.success);
+      }
     });
   };
 
@@ -82,8 +93,8 @@ export const LoginForm = () => {
               )}
             />
           </div>{" "}
-          <FormError message="" />
-          <FormSuccess message="" />
+          <FormError message={error} />
+          <FormSuccess message={success} />
           <Button disabled={isPending} type="submit" className="w-full">
             Login
           </Button>
