@@ -36,7 +36,6 @@ const RegisterForm = () => {
     startTransition(async () => {
       setError("");
       setSuccess("");
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       const response = await register(values);
       if (response?.error) {
         setError(response.error);
@@ -115,7 +114,7 @@ const RegisterForm = () => {
           <FormError message={error} />
           <FormSuccess message={success} />
           <Button disabled={isPending} type="submit" className="w-full">
-            register
+            Register
           </Button>
         </form>
       </Form>
