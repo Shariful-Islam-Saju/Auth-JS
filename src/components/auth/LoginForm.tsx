@@ -18,9 +18,11 @@ import FormError from "../FormError";
 import FormSuccess from "../FormSuccess";
 import { login } from "@/app/actions/login";
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 
- const LoginForm = () => {
+const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
+  const router = useRouter();
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof LoginSchemas>>({
@@ -41,6 +43,7 @@ import { useState, useTransition } from "react";
       }
       if (response?.success) {
         setSuccess(response.success);
+        router.push(response.redirectTo);
       }
     });
   };
@@ -103,4 +106,4 @@ import { useState, useTransition } from "react";
   );
 };
 
-export default LoginForm
+export default LoginForm;
