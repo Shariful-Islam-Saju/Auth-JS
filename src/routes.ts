@@ -1,8 +1,8 @@
 // public route
-export const publicRoutes = ["/", "/login", '/register'];
+export const publicRoutes = ["/", "/login", "/register", "/error"];
 
 //authenticaton route
-export const authRoutes = ["/login", "/register"];
+export const authRoutes = ["/login", "/register", "/error"];
 
 // The prefix for api authentication route
 export const apiAuthPrefix = "/api/auth";

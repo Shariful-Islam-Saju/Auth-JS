@@ -7,7 +7,7 @@ const Settings = async () => {
   console.log(session);
   return (
     <div className="flex flex-col justify-center items-center h-full ">
-      <p className="text-white font-bold text-lg my-5 max-w-[800px]">
+      <p className="text-white px-5 text-center font-bold text-lg my-5 max-w-[800px]">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium
         nostrum et, temporibus reiciendis iusto maiores, esse, fuga facilis a
         dolorum saepe aspernatur voluptatum? Minus, neque incidunt. Distinctio,
@@ -17,7 +17,7 @@ const Settings = async () => {
       </p>
       <form
         action={async () => {
-          'use server'
+          "use server";
           await signOut();
         }}
       >
