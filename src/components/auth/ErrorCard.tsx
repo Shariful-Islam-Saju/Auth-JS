@@ -8,6 +8,7 @@ const ErrorCard = () => {
       backButtonHerf="/login"
       backButtonLabel="Back to login"
       headerLabel="Oop! Something went wrong!"
+      
     >
       <div className="w-full flex justify-center items-center">
         <FaExclamationTriangle className="text-destructive" />
