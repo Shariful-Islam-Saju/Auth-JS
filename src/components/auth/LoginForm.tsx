@@ -23,8 +23,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const router = useRouter();
+  const searchParams = useSearchParams();
   const urlError =
-    useSearchParams().get("error") === "OAuthAccountNotLinked"
+    searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use"
       : "";
   const [success, setSuccess] = useState<string | undefined>("");
