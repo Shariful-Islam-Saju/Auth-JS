@@ -1,10 +1,8 @@
-import { auth, signOut } from "@/auth";
+import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
 const Settings = async () => {
-  const session = await auth();
-  console.log(session);
   return (
     <div className="flex flex-col justify-center items-center h-full ">
       <p className="text-white px-5 text-center font-bold text-lg my-5 max-w-[800px]">
