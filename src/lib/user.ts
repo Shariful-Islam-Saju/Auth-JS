@@ -24,3 +24,17 @@ export async function getUserById(id: string) {
     return null;
   }
 }
+
+export async function getVerificationTokenbyEmail(email: string) {
+  try {
+    const verificationToken = await db.verificationToken.findFirst({
+      where: {
+        email,
+      },
+    });
+
+    return verificationToken;
+  } catch (error) {
+    return null;
+  }
+}
