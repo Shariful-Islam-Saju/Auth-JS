@@ -38,3 +38,17 @@ export async function getVerificationTokenbyEmail(email: string) {
     return null;
   }
 }
+
+export async function getVerificationTokenbyToken(token: string) {
+  try {
+    const verificationToken = await db.verificationToken.findUnique({
+      where: {
+        token,
+      },
+    });
+
+    return verificationToken;
+  } catch (error) {
+    return null;
+  }
+}

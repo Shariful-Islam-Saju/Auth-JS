@@ -1,5 +1,6 @@
 "use server";
 import { db } from "@/lib/db";
+import { generateVerificationToken } from "@/lib/token";
 import { getUserByEmail } from "@/lib/user";
 import { RegisterSchemas } from "@/schemas";
 import { hash } from "bcryptjs";
@@ -28,8 +29,8 @@ export const register = async (values: z.infer<typeof RegisterSchemas>) => {
       },
     });
 
-    // TODO: sent verification email
-    return { success: "Account created successfully." };
+    const verificationToken = await generateVerificationToken(email);
+    return { success: "Verification code sent" };
   } catch (error) {
     if (error instanceof Error) {
       return { error: error.message };
