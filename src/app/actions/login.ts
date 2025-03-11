@@ -7,19 +7,7 @@ import { LoginSchemas } from "@/schemas";
 import { AuthError } from "next-auth";
 import * as z from "zod";
 
-export const login = async (values: z.infer<typeof LoginSchemas>):  Promise<{
-    error: string;
-    success?: undefined;
-    redirectTo?: undefined;
-} | {
-    success: any;
-    error?: undefined;
-    redirectTo?: undefined;
-} | {
-    success: string;
-    redirectTo: string;
-    error?: undefined;
-}> => {
+export const login = async (values: z.infer<typeof LoginSchemas>) => {
   const validatedFields = LoginSchemas.safeParse(values);
 
   if (!validatedFields.success) {
@@ -31,11 +19,13 @@ export const login = async (values: z.infer<typeof LoginSchemas>):  Promise<{
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email not Exits" };
   }
-  
+
   if (!existingUser.emailVerified) {
-    const verificationToken = await generateVerificationToken(email)
-    return {success: "Verification email sent"}
-    
+    const verificationToken = await generateVerificationToken(email);
+    return {
+      success: "Verification email sent",
+      redirectTo: DEFAULT_LOGIN_REDIRECT,
+    };
   }
 
   try {
