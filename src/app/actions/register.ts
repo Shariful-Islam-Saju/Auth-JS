@@ -1,5 +1,6 @@
 "use server";
 import { db } from "@/lib/db";
+import { sendVerificationEmail } from "@/lib/mail";
 import { generateVerificationToken } from "@/lib/token";
 import { getUserByEmail } from "@/lib/user";
 import { RegisterSchemas } from "@/schemas";
@@ -30,6 +31,7 @@ export const register = async (values: z.infer<typeof RegisterSchemas>) => {
     });
 
     const verificationToken = await generateVerificationToken(email);
+    await sendVerificationEmail(verificationToken.email, verificationToken.token);
     return { success: "Verification code sent" };
   } catch (error) {
     if (error instanceof Error) {
