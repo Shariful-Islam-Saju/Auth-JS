@@ -1,5 +1,11 @@
 // public route
-export const publicRoutes = ["/", "/login", "/register", "/error"];
+export const publicRoutes = [
+  "/",
+  "/login",
+  "/register",
+  "/error",
+  "/new-verification",
+];
 
 //authenticaton route
 export const authRoutes = ["/login", "/register", "/error"];
