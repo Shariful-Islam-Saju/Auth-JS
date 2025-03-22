@@ -6,11 +6,11 @@ export async function generateVerificationToken(email: string) {
   const token = uuid();
   const expire = new Date(new Date().getTime() + 3600 * 1000);
   const existingToken = await getVerificationTokenbyEmail(email);
-
+  console.log(existingToken);
   if (existingToken) {
-    db.verificationToken.delete({
+    await db.verificationToken.deleteMany({
       where: {
-        id: existingToken.id,
+        email,
       },
     });
   }

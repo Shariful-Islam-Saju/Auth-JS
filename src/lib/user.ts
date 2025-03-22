@@ -27,7 +27,7 @@ export async function getUserById(id: string) {
 
 export async function getVerificationTokenbyEmail(email: string) {
   try {
-    const verificationToken = await db.verificationToken.findFirst({
+    const verificationToken = await db.verificationToken.findMany({
       where: {
         email,
       },
