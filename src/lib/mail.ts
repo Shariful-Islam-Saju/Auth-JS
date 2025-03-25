@@ -23,7 +23,7 @@ export async function sendVerificationEmail(email: string, token: string) {
         </p>
         <hr style="border: none; height: 1px; background-color: #ddd; margin: 20px 0;">
         <p style="font-size: 12px; color: #999;">
-          &copy; ${new Date().getFullYear()} Your Company. All rights reserved.
+          &copy; ${new Date().getFullYear()} Shariful Islam. All rights reserved.
         </p>
       </div>
     `,
