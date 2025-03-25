@@ -22,13 +22,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
   const router = useRouter();
   const searchParams = useSearchParams();
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use"
       : "";
-  const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof LoginSchemas>>({
     resolver: zodResolver(LoginSchemas),
@@ -40,8 +40,8 @@ const LoginForm = () => {
 
   const onSubmit = (values: z.infer<typeof LoginSchemas>) => {
     startTransition(async () => {
-      setError("");
-      setSuccess("");
+      setError(undefined);
+      setSuccess(undefined);
       const response = await login(values);
       if (response?.error) {
         setError(response.error);
