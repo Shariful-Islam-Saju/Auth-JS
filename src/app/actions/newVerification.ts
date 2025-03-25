@@ -24,6 +24,8 @@ export async function verifyToken(token: string) {
     await db.verificationToken.delete({where: {
       id: tokenObject.id
     }})
+
+    return {seccess: "Email Verified!"}
   } catch (error) {
     return {error: "Something bad occurs"}
   }
