@@ -1,10 +1,12 @@
-import NewVerification from '@/components/auth/NewVerification'
-import React from 'react'
+import NewVerification from "@/components/auth/NewVerification";
+import React, { Suspense } from "react";
 
 const page = () => {
   return (
-   <NewVerification />
-  )
-}
+    <Suspense>
+      <NewVerification />
+    </Suspense>
+  );
+};
 
-export default page
+export default page;

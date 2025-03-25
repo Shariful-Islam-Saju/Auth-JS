@@ -1,18 +1,20 @@
 "use client";
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import CardWrapper from "./CardWrapper";
 import { BeatLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
+import { verifyToken } from "@/app/actions/newVerification";
 
 const NewVerification = () => {
   const searchParam = useSearchParams();
   const token = searchParam.get("token");
-  // const handleToken = useCallback(() => {
-  //   console.log(token);
-  // }, [token]);
-  // useEffect(handleToken, [handleToken]);
+
   useEffect(() => {
-    console.log(token);
+    async function handleToken() {
+      if (token) {
+        const isValidToken = await verifyToken(token);
+      }
+    }
   }, [token]);
 
   return (
