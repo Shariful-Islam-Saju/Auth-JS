@@ -21,8 +21,8 @@ import { useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginForm = () => {
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
   const router = useRouter();
   const searchParams = useSearchParams();
   const urlError =
@@ -39,9 +39,9 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchemas>) => {
+    setError("");
+    setSuccess("");
     startTransition(async () => {
-      setError(undefined);
-      setSuccess(undefined);
       const response = await login(values);
       if (response?.error) {
         setError(response.error);
