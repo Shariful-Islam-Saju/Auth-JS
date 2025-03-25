@@ -15,6 +15,7 @@ const NewVerification = () => {
         const isValidToken = await verifyToken(token);
       }
     }
+    handleToken()
   }, [token]);
 
   return (
