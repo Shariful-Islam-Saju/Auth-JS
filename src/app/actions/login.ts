@@ -24,11 +24,10 @@ export const login = async (values: z.infer<typeof LoginSchemas>) => {
   if (!existingUser.emailVerified) {
     const verificationToken = await generateVerificationToken(email);
 
-    // TODO: This will be added later 
-    // await sendVerificationEmail(
-    //   verificationToken.email,
-    //   verificationToken.token
-    // );
+    await sendVerificationEmail(
+      verificationToken.email,
+      verificationToken.token
+    );
     return {
       success: "Verification email sent",
       redirectTo: DEFAULT_LOGIN_REDIRECT,

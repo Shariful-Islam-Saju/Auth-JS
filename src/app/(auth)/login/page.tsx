@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Login" };
 const page = () => {
   return (
     <Suspense>
-      <LoginForm />;
+      <LoginForm />
     </Suspense>
   );
 };
