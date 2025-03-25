@@ -27,6 +27,6 @@ export async function verifyToken(token: string) {
 
     return {seccess: "Email Verified!"}
   } catch (error) {
-    return {error: "Something bad occurs"}
+    return {error: "Don't know what happend "}
   }
 }
